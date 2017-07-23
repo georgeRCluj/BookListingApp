@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Book Listing App</string>
+    <string name="edit_text_hint">Enter the books topic name</string>
+    <string name="edit_text_button">Search</string>
+    <string name="no_net_retry_button">Retry</string>
+    <string name="no_internet_connection_message">No internet connection</string>
+    <string name="empty_list_message">The list is empty.\nPlease search for topic.</string>
+
+    <string name="BookListing_API_Key">AIzaSyBM0m9O0N6e6_DjpRa4iDjVkFBXvsK5ZUM</string>
+</resources>
