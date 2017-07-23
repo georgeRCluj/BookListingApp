@@ -9,16 +9,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.booklistingapp.Models.Book;
 import com.example.android.booklistingapp.Networking.BookLoader;
 
 import java.util.List;
 
-import static com.example.android.booklistingapp.Constants.API_KEY_CONNECTION;
-import static com.example.android.booklistingapp.Constants.BOOKS_LISTING_URL;
-import static com.example.android.booklistingapp.Constants.BOOKS_LOADER_ID;
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.API_KEY_CONNECTION;
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.BOOKS_LISTING_URL;
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.BOOKS_LOADER_ID;
 import static com.example.android.booklistingapp.Networking.NetworkUtils.getStringFromRes;
 import static com.example.android.booklistingapp.Networking.NetworkUtils.isConnectedToNet;
 

@@ -23,7 +23,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.android.booklistingapp.Constants.LOG_TAG;
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.LOG_TAG;
 
 public class NetworkUtils {
 
