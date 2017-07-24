@@ -70,8 +70,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             searchLayout.setVisibility(View.VISIBLE);
             checkScreenRotationAndInitializeLoader(savedInstanceState);
         } else {
+            booksAdapter.clear();
             searchLayout.setVisibility(View.GONE);
             loadingIndicator.setVisibility(View.GONE);
+            emptyTextView.setVisibility(View.VISIBLE);
             emptyTextView.setText(getStringFromResources(this, R.string.no_internet_connection_message));
             noNetRetryButton.setVisibility(View.VISIBLE);
             setListenerOnRetryButton();

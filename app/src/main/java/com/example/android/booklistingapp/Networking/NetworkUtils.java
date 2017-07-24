@@ -63,19 +63,31 @@ public class NetworkUtils {
 
         try {
             JSONObject jsonObj = new JSONObject(requestUrl);
-            JSONArray items = jsonObj.getJSONArray("items");
-            for (int i = 0; i < items.length(); i++) {
-                JSONObject currentBook = items.getJSONObject(i);
-                JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
-                String title = volumeInfo.getString("title");
-                String publishedDate = volumeInfo.getString("publishedDate");
-                JSONArray authors = volumeInfo.getJSONArray("authors");
-                String allAuthors = "";
-                for (int j = 0; j < authors.length(); j++) {
-                    String currentAuthor= authors.getString(j);
-                    allAuthors += currentAuthor + "; ";
+            if (jsonObj.has("items")) {
+                JSONArray items = jsonObj.getJSONArray("items");
+                for (int i = 0; i < items.length(); i++) {
+                    JSONObject currentBook = items.getJSONObject(i);
+                    if (currentBook.has("volumeInfo")) {
+                        JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
+                        if (volumeInfo.has("title")) {
+                            String title = volumeInfo.getString("title");
+                            String publishedDate = "Published date N/A";
+                            if (volumeInfo.has("publishedDate")) {
+                                publishedDate = volumeInfo.getString("publishedDate");
+                            }
+                            String allAuthors = "Author N/A";
+                            if (volumeInfo.has("authors")) {
+                                allAuthors = "";
+                                JSONArray authors = volumeInfo.getJSONArray("authors");
+                                for (int j = 0; j < authors.length(); j++) {
+                                    String currentAuthor = authors.getString(j);
+                                    allAuthors += currentAuthor + "; ";
+                                }
+                            }
+                            books.add(new Book(title, allAuthors, publishedDate));
+                        }
+                    }
                 }
-                books.add(new Book(title, allAuthors, publishedDate));
             }
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the JSON results", e);
