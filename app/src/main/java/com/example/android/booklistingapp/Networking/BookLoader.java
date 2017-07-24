@@ -7,10 +7,12 @@ import com.example.android.booklistingapp.Models.Book;
 
 import java.util.List;
 
+import static com.example.android.booklistingapp.Networking.NetworkUtils.fetchBookData;
+
 public class BookLoader extends AsyncTaskLoader<List<Book>> {
     String[] urls;
 
-    public BookLoader(Context context, String... urls ) {
+    public BookLoader(Context context, String... urls) {
         super(context);
         this.urls = urls;
     }
@@ -25,7 +27,7 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
         if (urls.length < 1 || urls[0] == null) {
             return null;
         }
-        List<Book> books = NetworkUtils.fetchBookData(urls[0]);
+        List<Book> books = fetchBookData(urls[0]);
         return books;
     }
 }
