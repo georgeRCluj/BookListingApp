@@ -4,6 +4,7 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
-        String final_url = BOOKS_LISTING_URL + searchEditText.getText().toString().trim() + API_KEY_CONNECTION + getStringFromResources(MainActivity.this, R.string.BookListing_API_Key);
+        String final_url = BOOKS_LISTING_URL + searchEditText.getText().toString() + API_KEY_CONNECTION + getStringFromResources(MainActivity.this, R.string.BookListing_API_Key);
         emptyTextView.setVisibility(View.GONE);
         loadingIndicator.setVisibility(View.VISIBLE);
         return new BookLoader(this, final_url);

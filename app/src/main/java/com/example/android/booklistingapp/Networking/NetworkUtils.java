@@ -23,7 +23,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.CONNECTION_TIMEOUT;
 import static com.example.android.booklistingapp.UtilsLibraries.Constants.LOG_TAG;
+import static com.example.android.booklistingapp.UtilsLibraries.Constants.READ_TIMEOUT;
 
 public class NetworkUtils {
 
@@ -39,11 +41,6 @@ public class NetworkUtils {
     }
 
     public static List<Book> fetchBookData(String requestUrl) {
-        try {
-            Thread.sleep(50);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         URL url = createUrl(requestUrl);
         String jsonResponse = null;
         try {
@@ -115,8 +112,8 @@ public class NetworkUtils {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(CONNECTION_TIMEOUT);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
