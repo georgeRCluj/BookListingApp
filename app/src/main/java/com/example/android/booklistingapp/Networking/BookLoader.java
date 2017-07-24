@@ -16,17 +16,16 @@ public class BookLoader extends AsyncTaskLoader<List<Book>> {
     }
 
     @Override
-    protected void onForceLoad() {
+    protected void onStartLoading() {
         forceLoad();
     }
 
     @Override
     public List<Book> loadInBackground() {
-        // Don't perform the request if there are no URLs, or the first URL is null.
         if (urls.length < 1 || urls[0] == null) {
             return null;
         }
-        // List<Book> books = the list of books fetched from the API
-        return null;
+        List<Book> books = NetworkUtils.fetchBookData(urls[0]);
+        return books;
     }
 }

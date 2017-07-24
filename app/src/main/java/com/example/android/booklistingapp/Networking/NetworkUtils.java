@@ -34,7 +34,7 @@ public class NetworkUtils {
         return isConnected;
     }
 
-    public static String getStringFromRes(Context context, int resourceId) {
+    public static String getStringFromResources(Context context, int resourceId) {
         return context.getResources().getString(resourceId);
     }
 
@@ -63,17 +63,22 @@ public class NetworkUtils {
 
         try {
             JSONObject jsonObj = new JSONObject(requestUrl);
-            JSONArray features = jsonObj.getJSONArray("features");
-            for (int i = 0; i < features.length(); i++) {
-                JSONObject currentEarthquake = features.getJSONObject(i);
-                JSONObject properties = currentEarthquake.getJSONObject("properties");
-                double mag = properties.getDouble("mag");
-                String place = properties.getString("place");
-                long time = properties.getLong("time");
-                books.add(new Book("", "", ""));
+            JSONArray items = jsonObj.getJSONArray("items");
+            for (int i = 0; i < items.length(); i++) {
+                JSONObject currentBook = items.getJSONObject(i);
+                JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
+                String title = volumeInfo.getString("title");
+                String publishedDate = volumeInfo.getString("publishedDate");
+                JSONArray authors = volumeInfo.getJSONArray("authors");
+                String allAuthors = "";
+                for (int j = 0; j < authors.length(); j++) {
+                    String currentAuthor= authors.getString(j);
+                    allAuthors += currentAuthor + "; ";
+                }
+                books.add(new Book(title, allAuthors, publishedDate));
             }
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
         return books;
     }
@@ -110,7 +115,7 @@ public class NetworkUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();

@@ -2,12 +2,12 @@ package com.example.android.booklistingapp.Models;
 
 public class Book {
     String title;
-    String author;
+    String authors;
     String publishedDate;
 
-    public Book(String title, String author, String publishedDate) {
+    public Book(String title, String authors, String publishedDate) {
         this.title = title;
-        this.author = author;
+        this.authors = authors;
         this.publishedDate = publishedDate;
     }
 
@@ -15,8 +15,8 @@ public class Book {
         return title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthors() {
+        return authors;
     }
 
     public String getPublishedDate() {

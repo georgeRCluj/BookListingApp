@@ -17,7 +17,7 @@
         android:text="Book Author" />
 
     <TextView
-        android:id="@+id/bookOtherInfoId"
+        android:id="@+id/bookPublishedDateId"
         style="@style/ListItemStyle"
         android:text="Other Book Info" />
 </LinearLayout>
