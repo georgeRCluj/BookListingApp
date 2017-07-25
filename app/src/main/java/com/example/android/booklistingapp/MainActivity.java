@@ -123,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public Loader<List<Book>> onCreateLoader(int id, Bundle args) {
         String final_url = BOOKS_LISTING_URL + searchEditText.getText().toString() + API_KEY_CONNECTION + getStringFromResources(MainActivity.this, R.string.BookListing_API_Key);
+        final_url = final_url.replace(" ", "+");
         emptyTextView.setVisibility(View.GONE);
         loadingIndicator.setVisibility(View.VISIBLE);
         return new BookLoader(this, final_url);
